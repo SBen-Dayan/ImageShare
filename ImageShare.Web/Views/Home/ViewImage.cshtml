@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "View Image";
+}
+@model UploadViewModel
+
+@if (Model.Unlocked)
+{
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <img src="/uploads/@Model.Image.Name" style="width: 800px;" />
+            <br />
+            <h3>Views: @Model.Image.Views</h3>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6 offset-md-3 bg-light p-4 rounded shadow">
+            @if (!string.IsNullOrEmpty(Model.InvalidPassword))
+            {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>@Model.InvalidPassword</strong> Check for typos!.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <h4>Please enter the password for this image:</h4>
+            <form method="post">
+                <input type="hidden" name="id" value="@Model.Image.Id" />
+                <input type="password" class="form-control" placeholder="Password" name="password" />
+                <br />
+                <button class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+}

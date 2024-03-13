@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Upload";
+}
+@model UploadViewModel
+<div class="row">
+    <div class="col-md-8 offset-md-2 bg-light p-4 rounded shadow">
+        <h3>
+            Thank you for uploading your images,
+            here's the link to share with your friends:
+            <br /><br />
+            @{
+                var link = $"https://localhost:7276/home/viewimage?id={Model.Image.Id}";
+            }
+            <a href="@link">@link</a>
+            Make sure to give them the password of @Model.Image.Password!
+        </h3>
+    </div>
+</div>
